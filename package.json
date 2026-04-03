@@ -1,0 +1,166 @@
+{
+  "name": "cursor-voice-assistant",
+  "displayName": "Cursor Voice Assistant",
+  "description": "Interact with Cursor AI chat using voice input — speak prompts instead of typing them.",
+  "version": "0.1.0",
+  "publisher": "Misrilal-Sah",
+  "icon": "media/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Misrilal-Sah/Cursor-Voice-Assistant"
+  },
+  "bugs": {
+    "url": "https://github.com/Misrilal-Sah/Cursor-Voice-Assistant/issues"
+  },
+  "homepage": "https://github.com/Misrilal-Sah/Cursor-Voice-Assistant#readme",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "voice",
+    "speech",
+    "cursor",
+    "ai",
+    "microphone",
+    "transcription",
+    "whisper"
+  ],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "voiceAssistant.toggleRecording",
+        "title": "Voice Assistant: Toggle Recording",
+        "icon": "$(mic)"
+      },
+      {
+        "command": "voiceAssistant.startRecording",
+        "title": "Voice Assistant: Start Recording",
+        "icon": "$(mic)"
+      },
+      {
+        "command": "voiceAssistant.stopRecording",
+        "title": "Voice Assistant: Stop Recording",
+        "icon": "$(debug-stop)"
+      },
+      {
+        "command": "voiceAssistant.showHistory",
+        "title": "Voice Assistant: Show Voice History",
+        "icon": "$(history)"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "voiceAssistant.toggleRecording",
+        "key": "ctrl+shift+h",
+        "mac": "cmd+shift+h"
+      }
+    ],
+    "configuration": {
+      "title": "Cursor Voice Assistant",
+      "properties": {
+        "voiceAssistant.transcriptionEngine": {
+          "type": "string",
+          "default": "webSpeechAPI",
+          "enum": [
+            "webSpeechAPI",
+            "whisperAPI"
+          ],
+          "enumDescriptions": [
+            "Free Windows Speech Recognition via System.Speech (no API key or browser needed)",
+            "OpenAI Whisper API (requires API key, higher accuracy, records audio then transcribes)"
+          ],
+          "description": "Select the transcription engine to use."
+        },
+        "voiceAssistant.whisperApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "OpenAI API key for Whisper transcription engine.",
+          "order": 1
+        },
+        "voiceAssistant.language": {
+          "type": "string",
+          "default": "en-US",
+          "enum": [
+            "en-US",
+            "en-GB",
+            "en-IN",
+            "hi-IN",
+            "es-ES",
+            "fr-FR",
+            "de-DE",
+            "ja-JP",
+            "ko-KR",
+            "zh-CN",
+            "pt-BR",
+            "ru-RU",
+            "ar-SA",
+            "it-IT"
+          ],
+          "description": "Speech recognition language."
+        },
+        "voiceAssistant.outputMode": {
+          "type": "string",
+          "default": "clipboard",
+          "enum": [
+            "clipboard",
+            "editor",
+            "both"
+          ],
+          "enumDescriptions": [
+            "Copy transcription to clipboard (paste into Cursor chat with Ctrl+V)",
+            "Insert transcription at cursor position in active editor",
+            "Copy to clipboard AND insert into active editor"
+          ],
+          "description": "Where to send the transcribed text."
+        },
+        "voiceAssistant.autoOpenChat": {
+          "type": "boolean",
+          "default": true,
+          "description": "Automatically open Cursor AI chat after transcription completes."
+        },
+        "voiceAssistant.silenceTimeout": {
+          "type": "number",
+          "default": 3,
+          "minimum": 1,
+          "maximum": 30,
+          "description": "Seconds of silence before recording automatically stops."
+        },
+        "voiceAssistant.enablePromptCleanup": {
+          "type": "boolean",
+          "default": true,
+          "description": "Remove filler words (um, uh, like) and normalize punctuation."
+        },
+        "voiceAssistant.enableVoiceCommands": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable voice commands like 'stop recording', 'new line', 'send it'."
+        },
+        "voiceAssistant.showRealtimePreview": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show real-time transcription preview in the Voice Assistant panel."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "node esbuild.js --production",
+    "watch": "node esbuild.js --watch",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@types/vscode": "^1.85.0",
+    "esbuild": "^0.20.0",
+    "typescript": "^5.3.0"
+  },
+  "dependencies": {
+    "ws": "^8.16.0"
+  }
+}
