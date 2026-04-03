@@ -36,7 +36,7 @@ Uses **Windows Speech Recognition** via `System.Speech` — no Chrome, no browse
 Record local WAV with **Windows MCI** → send to OpenAI Whisper for maximum accuracy.
 
 ### 🤖 AI Prompt Cleanup
-Say "clean prompt" and let **Groq** (llama3-8b, ultra-fast) or **Gemini** polish your transcription before it hits the clipboard.
+Say “clean prompt” and let **Groq** (llama3-8b, ultra-fast, generous free tier) polish your transcription before it hits the clipboard.
 
 </td>
 <td width="50%">
@@ -89,22 +89,23 @@ code --install-extension cursor-voice-assistant-0.1.0.vsix
 
 > Open **Settings** (`Ctrl+,`) and search `Voice Assistant`.
 
-### API Keys (all optional)
+### 🔑 Groq API Key *(optional — only needed for AI prompt cleanup)*
 
-| Setting | Provider | Get Key |
+> **Where to add it:**  
+> `Ctrl+,` → search **Voice Assistant** → **Groq API Key** → paste your key
+
+| Setting | Description | Link |
 |---|---|---|
-| `voiceAssistant.groqApiKey` | Groq — AI cleanup (fast, free) | [console.groq.com/keys](https://console.groq.com/keys) |
-| `voiceAssistant.geminiApiKey` | Gemini — AI cleanup (250 req/day free) | [aistudio.google.com/apikey](https://aistudio.google.com/apikey) |
+| `voiceAssistant.groqApiKey` | Groq — AI cleanup (llama3-8b, fast, free) | [console.groq.com/keys](https://console.groq.com/keys) |
 | `voiceAssistant.whisperApiKey` | OpenAI Whisper — high-accuracy STT | [platform.openai.com/api-keys](https://platform.openai.com/api-keys) |
-
-> **None of these keys are required** for basic use. The default `webSpeechAPI` engine uses Windows Speech Recognition with no key.
 
 ### All Settings
 
 | Setting | Default | Description |
 |---|---|---|
 | `transcriptionEngine` | `webSpeechAPI` | `webSpeechAPI` (Windows) or `whisperAPI` (OpenAI) |
-| `aiCleanupProvider` | `groq` | `groq` or `gemini` for the AI cleanup feature |
+| `groqApiKey` | *(empty)* | Groq key for AI cleanup — [get free key](https://console.groq.com/keys) |
+| `whisperApiKey` | *(empty)* | OpenAI key for Whisper engine |
 | `language` | `en-US` | Recognition language |
 | `outputMode` | `clipboard` | `clipboard` · `editor` · `both` |
 | `autoOpenChat` | `true` | Auto-open Cursor AI chat after transcription |
@@ -233,7 +234,7 @@ src/
     ├── windowsSpeechEngine.ts ← Windows System.Speech via PowerShell
     ├── nativeAudioRecorder.ts ← Windows MCI recorder for Whisper mode
     ├── whisperEngine.ts       ← OpenAI Whisper API client
-    └── aiPromptCleaner.ts     ← Groq + Gemini AI cleanup
+    └── aiPromptCleaner.ts     ← Groq AI cleanup (llama3-8b-8192)
 media/
 └── icon.png
 ```
@@ -247,7 +248,6 @@ media/
 | `webSpeechAPI` | Processed locally by **Windows Speech Recognition** — stays on your machine |
 | `whisperAPI` | Audio sent to **OpenAI API** — key stored in VS Code local settings only |
 | Groq AI cleanup | Text sent to **Groq API** — key stored locally only |
-| Gemini AI cleanup | Text sent to **Google AI API** — key stored locally only |
 
 **No audio or transcription data is ever stored or transmitted by this extension itself.**
 
