@@ -79,8 +79,31 @@
         "voiceAssistant.whisperApiKey": {
           "type": "string",
           "default": "",
-          "description": "OpenAI API key for Whisper transcription engine.",
+          "description": "OpenAI API key for Whisper transcription (engine: whisperAPI).",
           "order": 1
+        },
+        "voiceAssistant.groqApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Groq API key for AI prompt cleanup (fast, free tier). Get one at https://console.groq.com/keys",
+          "order": 2
+        },
+        "voiceAssistant.geminiApiKey": {
+          "type": "string",
+          "default": "",
+          "description": "Google Gemini API key for AI prompt cleanup (250 req/day free). Get one at https://aistudio.google.com/apikey",
+          "order": 3
+        },
+        "voiceAssistant.aiCleanupProvider": {
+          "type": "string",
+          "default": "groq",
+          "enum": ["groq", "gemini"],
+          "enumDescriptions": [
+            "Groq (llama3-8b-8192) — very fast, generous free tier",
+            "Google Gemini (gemini-2.0-flash) — 250 req/day free tier"
+          ],
+          "description": "Which AI provider to use for the \"Clean Prompt\" feature.",
+          "order": 4
         },
         "voiceAssistant.language": {
           "type": "string",
