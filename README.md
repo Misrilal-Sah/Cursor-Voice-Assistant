@@ -63,6 +63,30 @@ Watch transcription update in real-time inside VS Code — no switching windows.
 
 ---
 
+
+### Install from Marketplace
+
+**Marketplace**
+
+1. Open VS Code
+2. Go to **Extensions** (`Ctrl+Shift+X`)
+3. Search for **Cursor Voice Assistant**
+4. Click **Install**
+
+
+**Quick open:**
+
+Press `Ctrl+P` and run:
+```
+ext install Misrilal-Sah.cursor-voice-assistant
+```
+
+**From the CLI:**
+
+```bash
+code --install-extension Misrilal-Sah.cursor-voice-assistant
+```
+
 ## 🚀 Quick Start
 
 ```
@@ -71,18 +95,6 @@ Watch transcription update in real-time inside VS Code — no switching windows.
 3. Stop speaking           →  Silence auto-stops after 3 s
 4. Hit  Ctrl+L  →  Ctrl+V →  Prompt is in Cursor AI chat. Press Enter.
 ```
-
-### Install from VSIX
-
-```bash
-code --install-extension cursor-voice-assistant-0.1.0.vsix
-```
-
-### Install from Marketplace
-
-1. `Ctrl+Shift+X` → search **Cursor Voice Assistant** → Install
-
----
 
 ## ⚙️ Configuration
 
@@ -134,85 +146,6 @@ code --install-extension cursor-voice-assistant-0.1.0.vsix
 | `"question mark"` | Inserts `?` |
 | `"exclamation mark"` | Inserts `!` |
 | `"clear all"` | Clears the current transcription |
-
----
-
-## 🛠️ Development
-
-### Prerequisites
-
-- **Node.js** ≥ 18 · **npm** ≥ 9
-- **Windows** (native audio uses Windows MCI / System.Speech)
-- VS Code or Cursor IDE
-
-### Setup
-
-```bash
-git clone https://github.com/Misrilal-Sah/Cursor-Voice-Assistant.git
-cd Cursor-Voice-Assistant
-npm install
-```
-
-### Build & Watch
-
-```bash
-npm run build      # one-time production build
-npm run watch      # auto-rebuild on save
-```
-
-### Run the Extension
-
-1. Open folder in VS Code
-2. Press **`F5`** — an Extension Development Host window opens
-3. `Output` panel → select `Voice Assistant` channel for live logs
-
----
-
-## 🧪 Testing
-
-### Manual QA Checklist
-
-#### 1 — Basic recording (`webSpeechAPI`)
-
-| # | Step | Expected |
-|---|---|---|
-| 1 | Press `Ctrl+Shift+H` | Status bar → **🎤 Recording…**; panel opens |
-| 2 | Say "hello world" | Live preview updates |
-| 3 | Wait 3 s (silence) | Auto-stops; clipboard contains "hello world" |
-| 4 | Press `Ctrl+Shift+H` while recording | Stops immediately |
-
-#### 2 — Whisper API mode
-
-| # | Step | Expected |
-|---|---|---|
-| 1 | Set engine to `whisperAPI`, add API key | — |
-| 2 | Press `Ctrl+Shift+H`, speak, say "stop recording" | Panel: "Recording audio…" |
-| 3 | After stop | Panel: "Transcribing with Whisper API…" |
-| 4 | Invalid key | Error shown, no crash |
-
-#### 3 — Groq AI cleanup
-
-| # | Step | Expected |
-|---|---|---|
-| 1 | Set `groqApiKey`, speak "um so basically like fix this bug" | Raw text in review panel |
-| 2 | Click **🧹 Clean Prompt** | Groq returns "Fix this bug." |
-| 3 | Click **✅ Use Cleaned** | Cleaned text on clipboard |
-
-#### 4 — Voice commands
-
-| Command | Expected |
-|---|---|
-| "stop recording" | Session stops |
-| "new line" | `\n` in output |
-| "question mark" | `?` in output |
-
-#### 5 — Edge cases
-
-| Scenario | Expected |
-|---|---|
-| Speak nothing — silence only | "No speech detected" warning |
-| Rapid double `Ctrl+Shift+H` | Only one session starts |
-| Groq key invalid | Friendly error; no crash |
 
 ---
 
@@ -282,6 +215,3 @@ Made with ❤️ by [Misrilal Sah](https://misril.dev/) &nbsp;·&nbsp; [Report a
 
 
 </div>
-
-
-
