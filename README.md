@@ -9,11 +9,10 @@
 
 <br/><br/>
 
-[![Version](https://img.shields.io/badge/version-0.1.0-818cf8?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://github.com/Misrilal-Sah/Cursor-Voice-Assistant/releases)
 [![Platform](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/Misrilal-Sah/Cursor-Voice-Assistant)
 [![License](https://img.shields.io/badge/MIT-22c55e?style=for-the-badge&logo=opensourceinitiative&logoColor=white)](LICENSE)
 [![VS Code](https://img.shields.io/badge/VS%20Code%201.85+-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)](https://code.visualstudio.com/)
-[![Stars](https://img.shields.io/github/stars/Misrilal-Sah/Cursor-Voice-Assistant?style=for-the-badge&color=f59e0b&logo=starship&logoColor=white)](https://github.com/Misrilal-Sah/Cursor-Voice-Assistant/stargazers)
+
 
 <br/>
 
